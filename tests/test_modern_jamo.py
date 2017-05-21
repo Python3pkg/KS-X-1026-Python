@@ -1,7 +1,7 @@
 """
 Tests for modern jamo
 """
-from __future__ import unicode_literals
+
 from ksx1026 import uchar, normalization
 import unittest
 import unicodedata
@@ -11,16 +11,16 @@ import six
 class JamoTest(unittest.TestCase):
     def setUp(self):
         self.lchar = list(
-            six.unichr(x) for x in range(int("1100", 16), int("1112", 16) + 1))
+            six.chr(x) for x in range(int("1100", 16), int("1112", 16) + 1))
         self.vchar = list(
-            six.unichr(x) for x in range(int("1161", 16), int("1175", 16) + 1))
+            six.chr(x) for x in range(int("1161", 16), int("1175", 16) + 1))
         self.tchar = list(
-            six.unichr(x) for x in range(int("11A8", 16), int("11C2", 16) + 1))
+            six.chr(x) for x in range(int("11A8", 16), int("11C2", 16) + 1))
 
         self.cpcchar = list(
-            six.unichr(x) for x in range(int("3131", 16), int("314E", 16) + 1))
+            six.chr(x) for x in range(int("3131", 16), int("314E", 16) + 1))
         self.cpvchar = list(
-            six.unichr(x) for x in range(int("314F", 16), int("3163", 16) + 1))
+            six.chr(x) for x in range(int("314F", 16), int("3163", 16) + 1))
 
     def test_choseong(self):
         for l in self.lchar:
@@ -94,11 +94,11 @@ class JamoTest(unittest.TestCase):
             if uchar.isChoseongJamo(l):
                 self.assertEqual(
                     normalization.normalizeJamoKDKC(cpc),
-                    l + six.unichr(int("1160", 16)))
+                    l + six.chr(int("1160", 16)))
             else:
                 self.assertEqual(
                     normalization.normalizeJamoKDKC(cpc),
-                    six.unichr(int("115F", 16)) + six.unichr(int("1160", 16)) +
+                    six.chr(int("115F", 16)) + six.chr(int("1160", 16)) +
                     l)
 
     def test_cpv(self):
@@ -120,7 +120,7 @@ class JamoTest(unittest.TestCase):
             self.assertTrue(uchar.isHangulLetter(cpv), msg=cpv)
             self.assertEqual(
                 normalization.normalizeJamoKDKC(cpv),
-                six.unichr(int("115F", 16)) + v)
+                six.chr(int("115F", 16)) + v)
 
 
 if __name__ == '__main__':

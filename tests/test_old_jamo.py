@@ -2,7 +2,7 @@
 """
 Tests for old jamo
 """
-from __future__ import unicode_literals
+
 from ksx1026 import uchar, normalization
 import unittest
 import itertools
@@ -13,27 +13,27 @@ class OldJamoTest(unittest.TestCase):
     def setUp(self):
 
         self.lchar = list(
-            six.unichr(x) for x in range(int("1100", 16), int("1112", 16) + 1))
+            six.chr(x) for x in range(int("1100", 16), int("1112", 16) + 1))
         self.vchar = list(
-            six.unichr(x) for x in range(int("1161", 16), int("1175", 16) + 1))
+            six.chr(x) for x in range(int("1161", 16), int("1175", 16) + 1))
         self.tchar = [""] + list(
-            six.unichr(x) for x in range(int("11A8", 16), int("11C2", 16) + 1))
+            six.chr(x) for x in range(int("11A8", 16), int("11C2", 16) + 1))
 
         self.old_lchar = list(
-            six.unichr(x)
+            six.chr(x)
             for x in range(int("1113", 16), int("115E", 16) + 1)) + list(
-                six.unichr(x)
+                six.chr(x)
                 for x in range(int("A960", 16), int("A97C", 16) + 1))
 
         self.old_vchar = list(
-            six.unichr(x)
+            six.chr(x)
             for x in range(int("1176", 16), int("11A7", 16) + 1)) + list(
-                six.unichr(x)
+                six.chr(x)
                 for x in range(int("D7B0", 16), int("D7C6", 16) + 1))
         self.old_tchar = list(
-            six.unichr(x)
+            six.chr(x)
             for x in range(int("11C3", 16), int("11FF", 16) + 1)) + list(
-                six.unichr(x)
+                six.chr(x)
                 for x in range(int("D7CB", 16), int("D7FB", 16) + 1))
 
     def test_uchar(self):

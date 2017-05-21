@@ -11,7 +11,7 @@ Reference
  * http://www.unicode.org/L2/L2008/08225-n3422.pdf
 
  """
-from __future__ import unicode_literals
+
 from . import uchar
 from .constants import INDEX1100, INDEXA960, INDEXD7B0, INDEXD7CB
 from .constants import HWJAMO, CPJAMO, PACHAR, CLCHAR
@@ -80,8 +80,8 @@ def getHangulWeight(hc):
     _type = 0
     index = ord(hc)
     weight = 0
-    L = six.unichr(0x115F)
-    V = six.unichr(0x1160)
+    L = six.chr(0x115F)
+    V = six.chr(0x1160)
     T = None
     """
     _type:
@@ -115,7 +115,7 @@ def getHangulWeight(hc):
         if index == ord(hc):
             raise
 
-    index = six.unichr(index)
+    index = six.chr(index)
     if uchar.isChoseongJamo(index):
         L = index
     elif uchar.isJungseongJamo(index):
@@ -150,7 +150,7 @@ def sortKey(text, hangul_first=True):
     for i, ch in itr:
         if uchar.isChoseongJamo(ch):
             L = ch
-            V = six.unichr(0x1160)
+            V = six.chr(0x1160)
             T = None
             if i + 1 < len(text) and uchar.isJungseongJamo(text[i + 1]):
                 _, V = next(itr)
@@ -165,7 +165,7 @@ def sortKey(text, hangul_first=True):
             if not hangul_first:
                 weight += 1 << 31
         elif uchar.isJongseongJamo(ch):
-            L = six.unichr(0x115F)
+            L = six.chr(0x115F)
             V = ch
             if i + 1 < len(text) and uchar.isJongseongJamo(text[i + 1]):
                 _, T = next(itr)
